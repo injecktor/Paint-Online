@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     wnd.hCursor = LoadCursor(NULL, IDC_ARROW);
     wnd.hInstance = hInstance;
     wnd.lpszClassName = L"MainWindow";
-    wnd.lpfnWndProc = WindowProcedure;
+    wnd.lpfnWndProc = MainWindowProcedure;
     
     if (!RegisterClassW(&wnd)) {
         return -1;

@@ -2,7 +2,7 @@
 
 #include "functions.h"
 
-#include "mainWindowProcedure.h"
+#include "windowProcedure.h"
 #include "menu.h"
 
 extern int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,

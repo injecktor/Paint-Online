@@ -131,11 +131,10 @@
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main.h" />
-    <ClCompile Include="mainWindowProcedure.cpp" />
-    <ClCompile Include="mainWindowProcedure.h" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="menu.h" />
     <ClCompile Include="widgets.cpp" />
+    <ClCompile Include="windowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="commandHandler.h" />
@@ -143,6 +142,7 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="widgets.h" />
+    <ClInclude Include="windowProcedure.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
