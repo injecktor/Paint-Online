@@ -1,5 +1,10 @@
 #include "main.h"
 
+#define WINDOW_WIDTH 780
+#define WINDOW_HEIGHT 600
+#define WINDOW_START_X 350
+#define WINDOW_START_Y 150
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     PSTR lpCmdLine, int nCmdShow)
 {
@@ -14,7 +19,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         return -1;
     }
 
-    CreateWindowW(L"MainWindow", L"Paint Online", WS_OVERLAPPEDWINDOW | WS_VISIBLE, 200, 200, 500, 500, NULL, NULL, hInstance, NULL);
+    CreateWindowW(L"MainWindow", L"Paint Online", WS_OVERLAPPEDWINDOW | WS_VISIBLE, WINDOW_START_X, WINDOW_START_Y, 
+        WINDOW_START_X + WINDOW_WIDTH, WINDOW_START_Y + WINDOW_HEIGHT, NULL, NULL, hInstance, NULL);
 
     MSG msg = { 0 };
     while (GetMessageW(&msg, NULL, NULL, NULL))

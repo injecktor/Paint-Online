@@ -1,11 +1,12 @@
 #include "commandHandler.h"
 
-LRESULT CALLBACK CommandHandler(WPARAM wp)
+LRESULT CALLBACK CommandHandler(HWND hWnd, WPARAM wp)
 {
     switch (wp)
     {
-    case 1: {
-        MessageBeep(MB_OK);
+    case MenuFileProcedures::Exit: {
+        DestroyWindow(hWnd);
     } break;
     }
+    return 0;
 }

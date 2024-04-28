@@ -1,7 +1,7 @@
 #pragma once
 
-#include "includes.h"
+#include "functions.h"
 
-HMENU hMenu;
+extern HMENU hMenu;
 
 extern void AddMenus(HWND hWnd);

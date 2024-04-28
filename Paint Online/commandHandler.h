@@ -1,5 +1,7 @@
 #pragma once
 
-#include "includes.h"
+#include "functions.h"
 
-extern LRESULT CALLBACK CommandHandler(WPARAM wp);
+#include "widgets.h"
+
+extern LRESULT CALLBACK CommandHandler(HWND hWnd, WPARAM wp);
