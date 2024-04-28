@@ -10,7 +10,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 {
     WNDCLASS wnd{ 0 };
     wnd.hbrBackground = (HBRUSH)COLOR_WINDOW;
-    wnd.hCursor = LoadCursor(NULL, IDC_ARROW);
     wnd.hInstance = hInstance;
     wnd.lpszClassName = L"MainWindow";
     wnd.lpfnWndProc = MainWindowProcedure;
