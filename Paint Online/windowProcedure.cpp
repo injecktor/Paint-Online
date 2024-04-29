@@ -9,6 +9,7 @@ HBRUSH brush1;
 
 LRESULT CALLBACK MainWindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
+    static bool isDrawing = false;
     switch (msg)
     {
     case WM_CREATE:
@@ -37,14 +38,26 @@ LRESULT CALLBACK MainWindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 
         if (PtInRect(&rect, cursorPos)) {
             SetCursor(LoadCursorW(NULL, IDC_CROSS));
-            rect1 = CreateRect(cursorPos.x - 1, cursorPos.y - 1, 3, 3);
-            brush1 = CreateSolidBrush(RGB(0, 0, 0));
-            RedrawWindow(hWnd, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
+            if (isDrawing) {
+                rect1 = CreateRect(cursorPos.x - 1, cursorPos.y - 1, 3, 3);
+                brush1 = CreateSolidBrush(RGB(0, 0, 0));
+                RedrawWindow(hWnd, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
+            }
         }
         else {
             SetCursor(LoadCursorW(NULL, IDC_ARROW));
+            isDrawing = false;
         }
 
+        break;
+    case WM_LBUTTONDOWN:
+        isDrawing = true;
+        break;
+
+    case WM_LBUTTONUP:
+        if (isDrawing) {
+            isDrawing = false;
+        }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
