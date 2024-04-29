@@ -15,11 +15,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     wnd.lpfnWndProc = MainWindowProcedure;
     
     if (!RegisterClassW(&wnd)) {
-        return -1;
+        return GetLastError();
     }
 
-    CreateWindowW(L"MainWindow", L"Paint Online", WS_OVERLAPPEDWINDOW | WS_VISIBLE, WINDOW_START_X, WINDOW_START_Y, 
+    HWND mainWindow = CreateWindowW(L"MainWindow", L"Paint Online", WS_OVERLAPPEDWINDOW | WS_VISIBLE, WINDOW_START_X, WINDOW_START_Y, 
         WINDOW_START_X + WINDOW_WIDTH, WINDOW_START_Y + WINDOW_HEIGHT, NULL, NULL, hInstance, NULL);
+
+    if (!mainWindow) {
+        return GetLastError();
+    }
 
     MSG msg = { 0 };
     while (GetMessageW(&msg, NULL, NULL, NULL))
