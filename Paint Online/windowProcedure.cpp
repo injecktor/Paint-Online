@@ -1,15 +1,13 @@
 #include "windowProcedure.h"
 
 PAINTSTRUCT ps;
-RECT rect;
-HBRUSH brush;
+RECT canvasRect;
+HBRUSH canvasBrush;
 
 RECT penRestrict;
 
-RECT rect1;
-HBRUSH brush1;
-
-RECT clientRect;
+RECT drawRect;
+HBRUSH drawBrush;
 
 int penWidth = 10;
 
@@ -22,28 +20,29 @@ LRESULT CALLBACK MainWindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
     case WM_CREATE:
         AddMenus(hWnd);
         MainAddWidgets(hWnd);
-        brush = CreateSolidBrush(RGB(255, 255, 255));
-        rect = CreateRect( 100, 100, 900, 500 );
-        rect1 = rect;
-        brush1 = brush;
+        canvasBrush = CreateSolidBrush(RGB(255, 255, 255));
+        canvasRect = CreateRect( 100, 100, 900, 500 );
+        drawRect = canvasRect;
+        drawBrush = canvasBrush;
+
         RedrawWindow(hWnd, NULL, NULL, RDW_UPDATENOW | RDW_VALIDATE);
 
-        penRestrict = rect;
+        penRestrict = canvasRect;
         penRestrict.left += penRadius;
         penRestrict.top += penRadius;
         penRestrict.right -= penRadius - 1;
         penRestrict.bottom -= penRadius - 1;
-
-        GetClientRect(hWnd, &clientRect);
 
         break;
     case WM_COMMAND:
         CommandHandler(hWnd, wp);
         break;
     case WM_PAINT:
+        RECT gradientRect = CreateRect(0, 0, 500, 100);
+        CreateGradientRect(GetDC(hWnd), &gradientRect, { 255, 0, 0 }, { 0, 0, 255 });
         BeginPaint(hWnd, &ps);
 
-        FillRect(ps.hdc, &rect1, brush1);
+        FillRect(ps.hdc, &drawRect, drawBrush);
 
         EndPaint(hWnd, &ps);
         break;
@@ -55,8 +54,8 @@ LRESULT CALLBACK MainWindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         if (PtInRect(&penRestrict, cursorPos)) {
             SetCursor(LoadCursorW(NULL, IDC_CROSS));
             if (isDrawing) {
-                rect1 = CreateRect(cursorPos.x - penWidth / 2, cursorPos.y - penWidth / 2, penWidth, penWidth);
-                brush1 = CreateSolidBrush(RGB(0, 0, 0));
+                drawRect = CreateRect(cursorPos.x - penWidth / 2, cursorPos.y - penWidth / 2, penWidth, penWidth);
+                drawBrush = CreateSolidBrush(RGB(0, 0, 0));
                 RedrawWindow(hWnd, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
             }
         }

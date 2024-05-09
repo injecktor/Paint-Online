@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="classes.cpp" />
     <ClCompile Include="commandHandler.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
@@ -138,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="commandHandler.h" />
-    <ClInclude Include="enums.h" />
+    <ClInclude Include="classes.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="widgets.h" />
